@@ -1,25 +1,44 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import "bulma/css/bulma.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import dataForm from "./assets/dataform";
+
+import Navbar from "./components/Navbar";
+import ListAll from "./components/ListAll";
+import ListOne from "./components/ListOne";
+import Save from "./components/Save";
+import Delete from "./components/Delete";
+import Increase from "./components/Increase";
+import Update from "./components/Update";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar></Navbar>
+        <Switch>
+        <Route path="/increase">
+            <Increase></Increase>
+          </Route>
+        <Route path="/delete">
+            <Delete></Delete>
+          </Route>
+          <Route path="/save">
+            <Save dataForm={dataForm}></Save>
+          </Route>
+          <Route path="/update">
+            <Update dataForm={dataForm}></Update>
+          </Route>
+        <Route path="/list">
+            <ListOne></ListOne>
+          </Route>
+          <Route path="/">
+            <ListAll></ListAll>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
